@@ -54,6 +54,9 @@ function draw() {
   let targetX = player.x - width / 2;
   let targetY = player.y - height / 2;
 
+  // breathing factor (no canvas transform here)
+  const breatheFactor = 1 + sin(frameCount * 0.02) * 0.1; // breathing effect
+
   // Clamp target camera safely
   const maxCamX = max(0, level.w - width);
   const maxCamY = max(0, level.h - height);
@@ -65,15 +68,33 @@ function draw() {
   camX = lerp(camX, targetX, camLerp);
   camY = lerp(camY, targetY, camLerp);
 
+  // Smooth zoom: when player is inside the big square, zoom in slowly
+  const inBig = level.isPlayerInBigSquare(player);
+  const zoomTarget = inBig ? 1.2 : 1.0;
+  level.cameraZoom = lerp(level.cameraZoom ?? 1, zoomTarget, camLerp);
+  const totalScale = level.cameraZoom * breatheFactor;
+
   level.drawBackground();
 
   push();
-  translate(-camX, -camY);
+  translate(width / 2, height / 2);
+  scale(totalScale);
+  translate(-camX - width / 2, -camY - height / 2);
   level.drawWorld();
   player.draw();
   pop();
 
   level.drawHUD(player, camX, camY);
+
+  // Update edge-film alpha and draw screen-space overlay if near edges
+  level.updateEdgeFilm(player);
+  if ((level.edgeFilmAlpha ?? 0) > 1) {
+    push();
+    noStroke();
+    fill(0, level.edgeFilmAlpha);
+    rect(0, 0, width, height);
+    pop();
+  }
 }
 
 function keyPressed() {

@@ -7,7 +7,7 @@
     "gridStep": 160
   },
   "camera": {
-    "lerp": 0.12
+    "lerp": 0.5
   },
   "playerStart": {
     "x": 300,
