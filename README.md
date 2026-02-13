@@ -1,18 +1,16 @@
 ## Project Title
 
-Side Quest Week 4 - Blob Game with Levels
+Side Quest Week 5 - Camera View Waves
 
 ---
 
 ## Description
 
-This code uses the blob game and adds more challenging aspects to it such as reaching the door at the last platform and avoiding spikes that could cause you to restart.
-
----
+## This code shows a grid with a small blue square you can move, as you move the blue square the camera creates a calming wave like motion to cakm users. The camera gets increasingly darker if the square is reaching the out of bounds area on the board.
 
 ## Interaction Instructions
 
-This is a game that consists of 2 levels. The challenge is to get the blob from the ground to the door placed on the last platform. Once that door is reached you advance to level 2. However, along the way you want to avoid the spike on the chosen platform, if you hit the spike you will restart the level.
+This is a game that consists of a 1 world level. You can calmly explore surroundings while the camera waves in and out. Representing, a calming and safe experience. However, along the way you want to avoid getting too close to the edge of the game board, if are out of bounds the camera will get a dark film over it.
 
 ## Assets
 
@@ -23,4 +21,4 @@ N/A
 ## GenAI
 
 The code was written by Dr. Karen Cochrane and David Han but they used GenAI to write the comments.
-This code was edited by Jasmine Henri and changes were made individually and using the visual studio chatbot.
+This code was edited by Jasmine Henri and changes were made individually and using the Visual Studio Chatbot.
